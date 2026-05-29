@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Premium Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://www.shutterstock.com/image-illustration/luxury-premium-corporate-abstract-design-600nw-2727581325.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Container */
+        .container {
+            width: 360px;
+            padding: 40px 35px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            font-weight: 500;
+            color: #e1dc9a;
+            background-image: radial-gradient(farthest-side, #e1dc9a 0%, #A86F37 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        /* Input */
+        .inputBox {
+            position: relative;
+            margin-bottom: 26px;
+            border-bottom: 2px solid #5b5b5e;
+        }
+
+        .inputBox input {
+            width: 100%;
+            padding: 12px 0;
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            font-size: 14px;
+        }
+
+        /* Label */
+        .inputBox span {
+            position: absolute;
+            left: 0;
+            top: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: 0.25s;
+        }
+
+        /* Floating */
+        .inputBox input:focus+span,
+        .inputBox input:valid+span {
+            top: -10px;
+            font-size: 11px;
+            color: #bb9250;
+        }
+
+
+        .inputBox:focus-within {
+            border-bottom: 1px solid #a5875b;
+        }
+
+
+        #error {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #bb9250;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+
+        .popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .popupContent {
+            width: 300px;
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            text-align: center;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .successIcon {
+            margin: 10px auto 15px;
+        }
+
+        .successIcon svg {
+            width: 50px;
+            stroke: #00ff9c;
+            fill: none;
+            stroke-width: 3;
+        }
+
+        .successIcon circle {
+            stroke-dasharray: 160;
+            stroke-dashoffset: 160;
+            animation: draw 0.5s forwards;
+        }
+
+        .successIcon path {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: draw 0.3s 0.4s forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+
+        .popupContent h3 {
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .popupContent p {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Register</h2>
+
+        <div class="inputBox">
+            <input type="text" id="name" required>
+            <span>Full Name</span>
+        </div>
+
+        <div class="inputBox">
+            <input type="email" id="email" required>
+            <span>Email</span>
+        </div>
+
+        <div class="inputBox">
+            <input type="tel" id="phone" oninput="handlePhone(this)" required>
+            <span>Phone Number</span>
+        </div>
+
+        <small id="error"></small>
+
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div id="popupContent" class="popupContent">
+            <div class="successIcon">
+                <svg viewBox="0 0 52 52">
+                    <circle cx="26" cy="26" r="25" />
+                    <path d="M14 27 L22 35 L38 18" />
+                </svg>
+            </div>
+            <h3>Success</h3>
+            <p>Registration completed</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <script src="./form.js"> </script>
+
+</body>
+
+</html>
